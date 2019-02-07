@@ -5,8 +5,15 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    players: { },
-    score: 0
+    players: [
+      {
+        name: "Thanh",
+        score: 501,
+        average: 30.2,
+      }
+    ],
+    score: 0,
+    singleOut: true,
   },
   mutations: {
 
