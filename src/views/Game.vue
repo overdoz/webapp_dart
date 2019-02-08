@@ -68,8 +68,11 @@ export default {
       })
     },
     shoot: function (value) {
-        if (this.doubleOut == true) {
-            // TODO: DoubleOut
+        switch (true) {
+            case value < this.player[this.currentIndex].score:
+            case value > this.player[this.currentIndex].score:
+            case value == this.player[this.currentIndex].score:
+
         }
 
 
