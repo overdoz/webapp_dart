@@ -1,6 +1,6 @@
 <template>
-  <div class="toggleButton">
-  
+  <div class="toggleButton" @click="$emit('toggle')">
+    <span>{{value}}</span>
   </div>
 </template>
 
@@ -15,8 +15,16 @@ export default {
    
     }
   },
-  methods: {
-
+  props: {
+      value: String,
   }
 }
 </script>
+
+<style scoped>
+.toggleButton {
+  width: 40%;
+  background-color: white;
+  margin: 10px;
+}
+</style>

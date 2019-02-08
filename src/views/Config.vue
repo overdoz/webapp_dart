@@ -7,6 +7,10 @@
       <AddPlayer v-for="(value, key) in player" :key="key" v-model="value['name']" />
       <AddButton @press="addPlayer" />
     </section>
+    <section class="button-section">
+      <ToggleButton value="501" />
+      <ToggleButton value="Double Out" />
+    </section>
     
     <div class="start">Start</div>
   </div>
@@ -15,13 +19,15 @@
 <script>
 import AddPlayer from '@/components/AddPlayer.vue'
 import AddButton from '@/components/AddButton.vue'
+import ToggleButton from '@/components/ToggleButton.vue'
 
 export default {
 
   name: 'config',
   components: {
     AddPlayer,
-    AddButton
+    AddButton,
+    ToggleButton
   },
   data: function () {
     return {
@@ -36,8 +42,9 @@ export default {
   },
   methods: {
     addPlayer: function () {
-      this.player.push({name: 'Spieler'});
-      console.log(this.player)
+      if (this.player.length < 4) {
+        this.player.push({name: 'Spieler'});
+      }
     }
   }
 }
@@ -48,9 +55,17 @@ h1 {
   margin: 0;
 }
 
+.button-section {
+  position: absolute;
+  bottom: 10vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
 section {
   width: 100vw;
-  height: 10vh;;
+  height: 20vh;;
 }
 
 .config {

@@ -16,6 +16,13 @@ export default new Vuex.Store({
     singleOut: true,
   },
   mutations: {
+    addPlayer (state, name, score) {
+      state.players.push({
+        name,
+        score,
+        average: 0,
+      })
+    }
 
   },
   actions: {

@@ -68,6 +68,12 @@ export default {
       })
     },
     shoot: function (value) {
+        if (this.doubleOut == true) {
+            // TODO: DoubleOut
+        }
+
+
+        // Wenn der Wurf höher als die Restpunktzahl ist, wechsle zum nächsten Spieler
         if (value > (this.player[this.currentIndex].score -= this.shots.reduce(this.add,0))) {
             this.shots = [];
             // TODO
@@ -78,13 +84,14 @@ export default {
             this.shots.push(value);
         }
 
+        this.player[this.currentIndex].score -= this.shots.reduce(this.add,0);
+        this.player[this.currentIndex].points += this.shots.reduce(this.add,0);
+
         if (this.shots.length == 3) {
             // füge die Punkte zum Spieler hinzu, berechne den Durchschitt und leere wieder alles
-            this.player[this.currentIndex].score -= this.shots.reduce(this.add,0);
-            this.player[this.currentIndex].score += this.shots.reduce(this.add,0);
             this.shots = [];
             this.player[this.currentIndex].round++;
-            this.player[this.currentIndex].average = this.player[this.currentIndex].average / this.player[this.currentIndex].round
+            this.player[this.currentIndex].average = this.player[this.currentIndex].points / this.player[this.currentIndex].round
 
             // wenn der letzte dran ist, index wieder auf 0 setzen
             if (this.currentIndex < this.player.length && this.currentIndex != this.player.length - 1) {

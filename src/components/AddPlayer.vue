@@ -22,7 +22,7 @@ export default {
   },
   props: {
       value: String,
-    }
+  }
 }
 </script>
 
