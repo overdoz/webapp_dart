@@ -56,7 +56,7 @@ export default {
   },
   methods: {
     initializeGame: function () {
-        this.currentPlayer = this.player[currentIndex];
+        this.currentPlayer = this.player[this.currentIndex];
 
     },
     addPlayer: function (name, score) {
@@ -68,7 +68,7 @@ export default {
       })
     },
     shoot: function (value) {
-        if (value > (this.player[currentIndex].score -= this.shots.reduce(add,0))) {
+        if (value > (this.player[this.currentIndex].score -= this.shots.reduce(this.add,0))) {
             this.shots = [];
             // TODO
             this.nextPlayer()
@@ -80,16 +80,16 @@ export default {
 
         if (this.shots.length == 3) {
             // füge die Punkte zum Spieler hinzu, berechne den Durchschitt und leere wieder alles
-            this.player[currentIndex].score -= this.shots.reduce(add,0);
-            this.player[currentIndex].score += this.shots.reduce(add,0);
+            this.player[this.currentIndex].score -= this.shots.reduce(this.add,0);
+            this.player[this.currentIndex].score += this.shots.reduce(this.add,0);
             this.shots = [];
-            this.player[currentIndex].round++;
-            this.player[currentIndex].average = this.player[currentIndex].average / this.player[currentIndex].round
+            this.player[this.currentIndex].round++;
+            this.player[this.currentIndex].average = this.player[this.currentIndex].average / this.player[this.currentIndex].round
 
             // wenn der letzte dran ist, index wieder auf 0 setzen
-            if (currentIndex < this.player.length && currentIndex != this.player.length - 1) {
+            if (this.currentIndex < this.player.length && this.currentIndex != this.player.length - 1) {
                 this.currentIndex++;
-                this.currentPlayer = this.player[currentIndex];
+                this.currentPlayer = this.player[this.currentIndex];
             } else {
                 this.currentIndex = 0;
                 this.currentPlayer = this.player[0];
