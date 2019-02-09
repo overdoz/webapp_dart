@@ -68,27 +68,36 @@ export default {
       })
     },
     shoot: function (value) {
+        // Wenn der Wurf <,>,= der aktuellen Punktzahl (- bereits geworfener Würfe)
         switch (true) {
-            case value < this.player[this.currentIndex].score:
-            case value > this.player[this.currentIndex].score:
-            case value == this.player[this.currentIndex].score:
+            case value < (this.player[this.currentIndex].score -= this.shots.reduce(this.add,0)):
+                // Zieh den Wurf vom Punktestand ab
+                this.player[this.currentIndex].score -= value;
+                this.player[this.currentIndex].points += value;
 
-        }
+            case value > (this.player[this.currentIndex].score -= this.shots.reduce(this.add,0)):
+                // Wenn der Wurf höher als die Restpunktzahl ist, wechsle zum nächsten Spieler
+                this.shots = [];
+                if (this.currentIndex < this.player.length && this.currentIndex != this.player.length - 1) {
+                    this.currentIndex++;
+                    // der nächste Spieler ist dran
+                    this.currentPlayer = this.player[this.currentIndex];
+                } else {
+                    // Wenn der letzte dran ist, setzte den Index wieder auf 0
+                    this.currentIndex = 0;
+                    this.currentPlayer = this.player[0];
+                }
 
+            case value == (this.player[this.currentIndex].score -= this.shots.reduce(this.add,0)):
 
-        // Wenn der Wurf höher als die Restpunktzahl ist, wechsle zum nächsten Spieler
-        if (value > (this.player[this.currentIndex].score -= this.shots.reduce(this.add,0))) {
-            this.shots = [];
-            // TODO
-            this.nextPlayer()
         }
 
         if (this.shots.length < 4) {
             this.shots.push(value);
         }
 
-        this.player[this.currentIndex].score -= this.shots.reduce(this.add,0);
-        this.player[this.currentIndex].points += this.shots.reduce(this.add,0);
+        
+        
 
         if (this.shots.length == 3) {
             // füge die Punkte zum Spieler hinzu, berechne den Durchschitt und leere wieder alles
@@ -99,8 +108,10 @@ export default {
             // wenn der letzte dran ist, index wieder auf 0 setzen
             if (this.currentIndex < this.player.length && this.currentIndex != this.player.length - 1) {
                 this.currentIndex++;
+                // der nächste Spieler ist dran
                 this.currentPlayer = this.player[this.currentIndex];
             } else {
+                // Wenn der letzte dran ist, setzte den Index wieder auf 0
                 this.currentIndex = 0;
                 this.currentPlayer = this.player[0];
             }
