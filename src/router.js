@@ -16,7 +16,7 @@ export default new Router({
       component: Welcome
     },
     {
-      path: '/',
+      path: '/config',
       name: 'config',
       component: Config
     },

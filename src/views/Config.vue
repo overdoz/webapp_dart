@@ -12,7 +12,7 @@
       <ToggleButton value="Double Out" />
     </section>
     
-    <div class="start">Start</div>
+    <router-link to="/game"><div class="start">Start</div></router-link>
   </div>
 </template>
 
@@ -45,6 +45,9 @@ export default {
       if (this.player.length < 4) {
         this.player.push({name: 'Spieler'});
       }
+    },
+    initializeGame: function () {
+
     }
   }
 }
