@@ -1,6 +1,6 @@
 <template>
-  <div class="addButton">
-      <span @click="$emit('press')">+ hinzufügen</span>
+  <div class="addButton" @click="$emit('press')">
+      <span>+ hinzufügen</span>
   </div>
 </template>
 

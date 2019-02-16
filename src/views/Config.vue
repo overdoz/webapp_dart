@@ -1,11 +1,11 @@
 <template>
   <div class="config">
-    <section>
+    <section class="header">
       <h1>Dart Zähler</h1>
     </section>
-    <section>
+    <section class="player">
       <AddPlayer v-for="(value, key) in player" :key="key" v-model="value['name']" />
-      <AddButton @press="addPlayer" />
+      <AddButton @press="addPlayer()" />
     </section>
     <section class="button-section">
       <ToggleButton value="501" />
@@ -35,14 +35,14 @@ export default {
       doubleOut: false,
       player: [
         {name: 'Thanh'},
-        {name: 'Paul'},
         {name: 'Sophie'},
       ],
     }
   },
   methods: {
     addPlayer: function () {
-      if (this.player.length < 4) {
+      console.log('clicked');
+      if (this.player.length < 5) {
         this.player.push({name: 'Spieler'});
       }
     },
@@ -68,7 +68,14 @@ h1 {
 
 section {
   width: 100vw;
-  height: 20vh;;
+}
+
+.header {
+  height: 10vh;
+}
+
+.player {
+  height: 40vh;;
 }
 
 .config {

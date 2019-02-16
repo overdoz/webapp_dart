@@ -1,7 +1,7 @@
 <template>
   <div class="welcome">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-		<div class="secondLayer"><h1 class="spinner">{{text}}</h1></div>
+		<div class="secondLayer"><h1>{{text}}</h1></div>
     <div class="spinner">
    <div class="container_1">
 	<div class="big-leaf_1"><div></div><div></div></div>
@@ -91,7 +91,7 @@ export default {
 		}, 700);
     setTimeout(() => {
       	this.$router.push('/config');
-    }, 5500)
+    }, 9000)
   },
   methods: {
     goToNextPage: function () {
