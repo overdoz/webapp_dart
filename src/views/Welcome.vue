@@ -1,7 +1,7 @@
 <template>
   <div class="welcome">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-    <h1>OVE<br/>RDO<br/>Z</h1>
+		<div class="secondLayer"><h1 class="spinner">{{text}}</h1></div>
     <div class="spinner">
    <div class="container_1">
 	<div class="big-leaf_1"><div></div><div></div></div>
@@ -64,192 +64,7 @@
 </div>
 </div>
 
- <div class="spinner2">
-   <div class="container_1">
-	<div class="big-leaf_1"><div></div><div></div></div>
-	<div class="big-leaf_2"><div></div><div></div></div>
-	<div class="big-leaf_3"><div></div><div></div></div>
-	<div class="big-leaf_4"><div></div><div></div></div>
-	<div class="big-leaf_5"><div></div><div></div></div>
-	<div class="big-leaf_6"><div></div><div></div></div>
-	<div class="big-leaf_7"><div></div><div></div></div>
-	<div class="big-leaf_8"><div></div><div></div></div>
-	<div class="big-leaf_9"><div></div><div></div></div>
-	<div class="big-leaf_10"><div></div><div></div></div>
-	<div class="big-leaf_11"><div></div><div></div></div>
-	<div class="big-leaf_12"><div></div><div></div></div>
-</div>
-	
-<div class="container_2">
-	<div class="line_1"></div>
-	<div class="line_2"></div>
-	<div class="line_3"></div>
-	<div class="line_4"></div>
-	<div class="line_5"></div>
-	<div class="line_6"></div>
-	<div class="line_7"></div>
-	<div class="line_8"></div>
-	<div class="line_9"></div>
-	<div class="line_10"></div>
-	<div class="line_11"></div>
-	<div class="line_12"></div>
-</div>
-	
-<div class="container_3">
-	<div class="circle_1"><div></div><div></div></div>
-	<div class="circle_2"><div></div><div></div></div>
-	<div class="circle_3"><div></div><div></div></div>
-	<div class="circle_4"><div></div><div></div></div>
-	<div class="circle_5"><div></div><div></div></div>
-	<div class="circle_6"><div></div><div></div></div>
-	<div class="circle_7"><div></div><div></div></div>
-	<div class="circle_8"><div></div><div></div></div>
-	<div class="circle_9"><div></div><div></div></div>
-	<div class="circle_10"><div></div><div></div></div>
-	<div class="circle_11"><div></div><div></div></div>
-	<div class="circle_12"><div></div><div></div></div>
-</div>
-	
-<div class="container_4">
-	<div class="triangel_1"></div>
-	<div class="triangel_2"></div>
-	<div class="triangel_3"></div>
-	<div class="triangel_4"></div>
-	<div class="triangel_5"></div>
-	<div class="triangel_6"></div>
-	<div class="triangel_7"></div>
-	<div class="triangel_8"></div>
-	<div class="triangel_9"></div>
-	<div class="triangel_10"></div>
-	<div class="triangel_11"></div>
-	<div class="triangel_12"></div>
-</div>
-</div>
-
-   <div class="spinner3">
-   <div class="container_1">
-	<div class="big-leaf_1"><div></div><div></div></div>
-	<div class="big-leaf_2"><div></div><div></div></div>
-	<div class="big-leaf_3"><div></div><div></div></div>
-	<div class="big-leaf_4"><div></div><div></div></div>
-	<div class="big-leaf_5"><div></div><div></div></div>
-	<div class="big-leaf_6"><div></div><div></div></div>
-	<div class="big-leaf_7"><div></div><div></div></div>
-	<div class="big-leaf_8"><div></div><div></div></div>
-	<div class="big-leaf_9"><div></div><div></div></div>
-	<div class="big-leaf_10"><div></div><div></div></div>
-	<div class="big-leaf_11"><div></div><div></div></div>
-	<div class="big-leaf_12"><div></div><div></div></div>
-</div>
-	
-<div class="container_2">
-	<div class="line_1"></div>
-	<div class="line_2"></div>
-	<div class="line_3"></div>
-	<div class="line_4"></div>
-	<div class="line_5"></div>
-	<div class="line_6"></div>
-	<div class="line_7"></div>
-	<div class="line_8"></div>
-	<div class="line_9"></div>
-	<div class="line_10"></div>
-	<div class="line_11"></div>
-	<div class="line_12"></div>
-</div>
-	
-<div class="container_3">
-	<div class="circle_1"><div></div><div></div></div>
-	<div class="circle_2"><div></div><div></div></div>
-	<div class="circle_3"><div></div><div></div></div>
-	<div class="circle_4"><div></div><div></div></div>
-	<div class="circle_5"><div></div><div></div></div>
-	<div class="circle_6"><div></div><div></div></div>
-	<div class="circle_7"><div></div><div></div></div>
-	<div class="circle_8"><div></div><div></div></div>
-	<div class="circle_9"><div></div><div></div></div>
-	<div class="circle_10"><div></div><div></div></div>
-	<div class="circle_11"><div></div><div></div></div>
-	<div class="circle_12"><div></div><div></div></div>
-</div>
-	
-<div class="container_4">
-	<div class="triangel_1"></div>
-	<div class="triangel_2"></div>
-	<div class="triangel_3"></div>
-	<div class="triangel_4"></div>
-	<div class="triangel_5"></div>
-	<div class="triangel_6"></div>
-	<div class="triangel_7"></div>
-	<div class="triangel_8"></div>
-	<div class="triangel_9"></div>
-	<div class="triangel_10"></div>
-	<div class="triangel_11"></div>
-	<div class="triangel_12"></div>
-</div>
-</div>
-
- <div class="spinner4">
-   <div class="container_1">
-	<div class="big-leaf_1"><div></div><div></div></div>
-	<div class="big-leaf_2"><div></div><div></div></div>
-	<div class="big-leaf_3"><div></div><div></div></div>
-	<div class="big-leaf_4"><div></div><div></div></div>
-	<div class="big-leaf_5"><div></div><div></div></div>
-	<div class="big-leaf_6"><div></div><div></div></div>
-	<div class="big-leaf_7"><div></div><div></div></div>
-	<div class="big-leaf_8"><div></div><div></div></div>
-	<div class="big-leaf_9"><div></div><div></div></div>
-	<div class="big-leaf_10"><div></div><div></div></div>
-	<div class="big-leaf_11"><div></div><div></div></div>
-	<div class="big-leaf_12"><div></div><div></div></div>
-</div>
-	
-<div class="container_2">
-	<div class="line_1"></div>
-	<div class="line_2"></div>
-	<div class="line_3"></div>
-	<div class="line_4"></div>
-	<div class="line_5"></div>
-	<div class="line_6"></div>
-	<div class="line_7"></div>
-	<div class="line_8"></div>
-	<div class="line_9"></div>
-	<div class="line_10"></div>
-	<div class="line_11"></div>
-	<div class="line_12"></div>
-</div>
-	
-<div class="container_3">
-	<div class="circle_1"><div></div><div></div></div>
-	<div class="circle_2"><div></div><div></div></div>
-	<div class="circle_3"><div></div><div></div></div>
-	<div class="circle_4"><div></div><div></div></div>
-	<div class="circle_5"><div></div><div></div></div>
-	<div class="circle_6"><div></div><div></div></div>
-	<div class="circle_7"><div></div><div></div></div>
-	<div class="circle_8"><div></div><div></div></div>
-	<div class="circle_9"><div></div><div></div></div>
-	<div class="circle_10"><div></div><div></div></div>
-	<div class="circle_11"><div></div><div></div></div>
-	<div class="circle_12"><div></div><div></div></div>
-</div>
-	
-<div class="container_4">
-	<div class="triangel_1"></div>
-	<div class="triangel_2"></div>
-	<div class="triangel_3"></div>
-	<div class="triangel_4"></div>
-	<div class="triangel_5"></div>
-	<div class="triangel_6"></div>
-	<div class="triangel_7"></div>
-	<div class="triangel_8"></div>
-	<div class="triangel_9"></div>
-	<div class="triangel_10"></div>
-	<div class="triangel_11"></div>
-	<div class="triangel_12"></div>
-</div>
-</div>
-	
+ 
   </div>
 </template>
 
@@ -260,10 +75,23 @@ export default {
   components: {
     Mandala
   },
+	 data: function () {
+    return {
+			text: ''
+    }
+  },
   created() {
+		let title = ['O','V','E','R','D','O','Z'];
+		setInterval(() => {
+			if (title.length == 0) {
+				clearInterval()
+			} else {
+				this.text = this.text + title.shift()
+			}
+		}, 700);
     setTimeout(() => {
-      // this.$router.push('/config');
-    }, 5000)
+      	this.$router.push('/config');
+    }, 5500)
   },
   methods: {
     goToNextPage: function () {
@@ -277,86 +105,48 @@ export default {
 @charset "utf8";
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC|Space+Mono|VT323);
 h1 {
-  color: #d01551;
+  color: #02BEC4;
   letter-spacing: 10px;
-  position: absolute;
   left: 5%;
-  bottom: 50%;
+  bottom: 3px;
   font-size: 4em;
-font-family: 'VT323', monospace;}
+	font-family: 'Amatic SC', cursive;
+	z-index: 3;
+	margin: 0;
+}
 
 .spinner {
     -webkit-animation-name: spin;
-    -webkit-animation-duration: 20000ms;
+    -webkit-animation-duration: 90000ms;
     -webkit-animation-iteration-count: infinite;
     -webkit-animation-timing-function: linear;
     -moz-animation-name: spin;
-    -moz-animation-duration: 20000ms;
+    -moz-animation-duration: 90000ms;
     -moz-animation-iteration-count: infinite;
     -moz-animation-timing-function: linear;
     -ms-animation-name: spin;
-    -ms-animation-duration: 20000ms;
+    -ms-animation-duration: 90000ms;
     -ms-animation-iteration-count: infinite;
     -ms-animation-timing-function: linear;
 }
 
-.spinner2 {
-  position: absolute;
-  top: 0;
-  right: 0;
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 20000ms;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-    -moz-animation-name: spin;
-    -moz-animation-duration: 20000ms;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: linear;
-    -ms-animation-name: spin;
-    -ms-animation-duration: 20000ms;
-    -ms-animation-iteration-count: infinite;
-    -ms-animation-timing-function: linear;
-}
-
-.spinner3 {
-  bottom: 0;
-  right: 0;
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 20000ms;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-    -moz-animation-name: spin;
-    -moz-animation-duration: 20000ms;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: linear;
-    -ms-animation-name: spin;
-    -ms-animation-duration: 20000ms;
-    -ms-animation-iteration-count: infinite;
-    -ms-animation-timing-function: linear;
-}
-
-.spinner4 {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-    -webkit-animation-name: spin;
-    -webkit-animation-duration: 20000ms;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-animation-timing-function: linear;
-    -moz-animation-name: spin;
-    -moz-animation-duration: 20000ms;
-    -moz-animation-iteration-count: infinite;
-    -moz-animation-timing-function: linear;
-    -ms-animation-name: spin;
-    -ms-animation-duration: 20000ms;
-    -ms-animation-iteration-count: infinite;
-    -ms-animation-timing-function: linear;
+.secondLayer {
+	height: 100vh;
+	width: 100vw;
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
 }
 
 .welcome {
-  background-color: black;
-  height: 100%;
-  width: 100%;
+  background-color: #E1F7E6;
+  height: 100vh;
+  width: 100vw;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	text-align: center;
 }
 
 @-moz-keyframes spin {
@@ -384,7 +174,7 @@ html
 	{content:"";display:block;position:absolute}
 
 body{
-	background:#000;
+	background:#E1F7E6;
 	margin:0;
 	padding:0;
 	overflow:hidden
@@ -402,7 +192,7 @@ div{display:block;position:absolute}
 .container_1{width:350px;height:350px}
 
 .container_1:before{
-	background:#000;
+	background:#E1F7E6;
 	width:280px;
 	height:280px;
 	top:35px;
@@ -447,7 +237,7 @@ div{display:block;position:absolute}
 	height:40px;
 	left:50%;
 	border-radius:75% 0 75% 0;
-	box-shadow:0 0 0 4px #d01551;
+	box-shadow:0 0 0 4px #A9E8DC;
 	transform:translate(-50%,0) rotate(135deg)
 	}
 
@@ -455,7 +245,7 @@ div{display:block;position:absolute}
 [class*="big-leaf"] div:nth-child(2){bottom:10px}
 
 [class*="big-leaf"] div:before{
-	background:#d01551;
+	background:#A9E8DC;
 	width:35px;
 	height:35px;
 	border-radius:75% 0 75% 0
@@ -467,7 +257,7 @@ div{display:block;position:absolute}
 [class*="big-leaf"] div:after{
 	width:30px;
 	height:30px;
-	border:4px dotted #000;
+	border:4px dotted #E1F7E6;
 	border-radius:75% 0 75% 0
 	}
 
@@ -488,11 +278,11 @@ div{display:block;position:absolute}
 
 [class*="line"]:before,
 [class*="line"]:after{
-	background-color:#000;
+	background-color:#E1F7E6;
 	background-image:
-		linear-gradient(90deg,#d01551 100%,rgba(0,0,0,0)),
-		linear-gradient(90deg,#d01551 100%,rgba(0,0,0,0)),
-		linear-gradient(90deg,#d01551 100%,rgba(0,0,0,0));
+		linear-gradient(90deg,#A9E8DC 100%,#E1F7E6),
+		linear-gradient(90deg,#A9E8DC 100%,#E1F7E6),
+		linear-gradient(90deg,#A9E8DC 100%,#E1F7E6);
 	background-repeat:no-repeat;
 	background-size:5px 10px,5px 15px,5px 10px;
 	width:100%;
@@ -532,7 +322,7 @@ div{display:block;position:absolute}
 	width:20px;
 	height:20px;
 	border-radius:100% 100% 100% 0;
-	box-shadow:0 0 0 4px #d01551
+	box-shadow:0 0 0 4px #A9E8DC
 	}
 
 [class*="circle"] div:nth-child(1)
@@ -546,18 +336,18 @@ div{display:block;position:absolute}
 	height:12px;
 	top:4px;
 	left:4px;
-	border:3px solid #d01551;
+	border:3px solid #A9E8DC;
 	border-radius:100% 100% 100% 0
 	}
 
 [class*="circle"] div:after{
-	background:#d01551;
+	background:#A9E8DC;
 	width:5px;
 	height:5px;
 	bottom:-10px;
 	left:-10px;
 	border-radius:50%;
-	box-shadow:-7px 7px #d01551,-14px 14px #d01551,-21px 21px #d01551,-28px 28px #d01551,-35px 35px #d01551
+	box-shadow:-7px 7px #A9E8DC,-14px 14px #A9E8DC,-21px 21px #A9E8DC,-28px 28px #A9E8DC,-35px 35px #A9E8DC
 	}
 
 .container_4
@@ -575,7 +365,7 @@ div{display:block;position:absolute}
 	height:0;
 	top:0;
 	left:5px;
-	border-bottom:10px solid #d01551;
+	border-bottom:10px solid #A9E8DC;
 	border-left:5px solid transparent;
 	border-right:5px solid transparent
 	}
@@ -585,7 +375,7 @@ div{display:block;position:absolute}
 	height:0;
 	bottom:0;
 	left:5px;
-	border-top:10px solid #d01551;
+	border-top:10px solid #A9E8DC;
 	border-left:5px solid transparent;
 	border-right:5px solid transparent
 	}
