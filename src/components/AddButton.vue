@@ -24,11 +24,13 @@ export default {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    height: 2vh;
+    height: 0.6vh;
     padding: 0.9em;
     background-color: #DDD;
     border-radius: 2em;
     font-size: 20px;
     margin: 10px;
+    box-shadow: 5px 5px 5px #aaaaaa;
+    cursor: pointer;
 }
 </style>

@@ -3,7 +3,7 @@
     <div class="header">
         <div class="user" v-for="(user, key) in player" :key="key">
             <p>{{user.name}}</p>
-            <p>{{user.score}}</p>
+            <p class="score">{{user.score}}</p>
             <p>{{Math.round(user.average * 10) / 10}}</p>
         </div>
     </div>
@@ -215,6 +215,11 @@ export default {
     justify-content: center;
     align-items: center;
     cursor: pointer;
+}
+
+.score {
+    font-weight: bold;
+    font-size: 120;
 }
 
 .header {

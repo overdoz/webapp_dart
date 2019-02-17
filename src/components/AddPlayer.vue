@@ -28,7 +28,7 @@ export default {
 
 <style scoped>
 input {
-    background-color: #DDD;
+    background-color: rgba(0,0,0,0);
     border: none;
     font-size: 20px;
 }
@@ -36,18 +36,18 @@ span {
     font-size: 25px;
 }
 input:focus {
-    background-color: #DDD;
+    background-color: rgba(0,0,0,0);;
     border: none;
 }
 .addPlayer {
-    width: 80vw;
+    
     display: flex;
     justify-content: space-between;
     align-items: center;
     height: 2vh;
     padding: 0.9em;
     font-size: 10px;
-    background-color: #DDD;
+    background-color: rgba(0,0,0,0);
     border-radius: 2em;
     margin: 10px;
 }

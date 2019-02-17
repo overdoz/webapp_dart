@@ -3,6 +3,12 @@
     <section class="header">
       <h1>Dart Zähler</h1>
     </section>
+
+    <section class="player">
+      <AddPlayer v-for="(value, key) in player" :key="key" v-model="value['name']" />
+      <AddButton class="addButton" @press="addPlayer()" />
+    </section>
+    <!-- 
     <section class="player">
       <AddPlayer v-for="(value, key) in player" :key="key" v-model="value['name']" />
       <AddButton @press="addPlayer()" />
@@ -12,7 +18,7 @@
       <ToggleButton value="Double Out" />
     </section>
     
-    <router-link to="/game"><div class="start">Start</div></router-link>
+    <router-link to="/game"><div class="start">Start</div></router-link> -->
   </div>
 </template>
 
@@ -42,7 +48,7 @@ export default {
   methods: {
     addPlayer: function () {
       console.log('clicked');
-      if (this.player.length < 5) {
+      if (this.player.length <= 4) {
         this.player.push({name: 'Spieler'});
       }
     },
@@ -58,6 +64,10 @@ h1 {
   margin: 0;
 }
 
+.addButton {
+  margin-top: 30px;
+}
+
 .button-section {
   position: absolute;
   bottom: 10vh;
@@ -71,16 +81,28 @@ section {
 }
 
 .header {
-  height: 10vh;
+    grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 1;
+    grid-row-end: 2;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 .player {
-  height: 40vh;;
+  grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 2;
+    grid-row-end: 3;
 }
 
 .config {
   background-color: #BBB;
   height: 100vh;
+  display: grid;
+  grid-template-rows: 10fr 40fr 10fr 7fr;
+  grid-template-columns: 50% 50%;
   
 }
 
