@@ -46,6 +46,10 @@ export default {
   components: {
     
   },
+  beforeCreate() {
+      // this.player = this.$store.state.players;
+      // TODO: Link player mit dem VUEX Store
+  },
   created() {
       this.initializeGame();
   },
@@ -55,7 +59,7 @@ export default {
       doubleHit: false,
       tripleHit: false,
 
-        disableButtons: false,
+      disableButtons: false,
 
       doubleOut: false,
       currentPlayer: '',
@@ -63,39 +67,46 @@ export default {
       shots: [],
       player: [
           {
-              name: "Thanh",
+              name: 'Thanh',
               score: 501,
               average: 0,
               points: 0,
-              round: 0,
+              round: 0
           },
-          {
-              name: "Paul",
+           {
+              name: 'Flo',
               score: 501,
               average: 0,
               points: 0,
-              round: 0,
+              round: 0
           },
-          {
-              name: "Sophie",
+           {
+              name: 'Sophie',
               score: 501,
               average: 0,
               points: 0,
-              round: 0,
+              round: 0
           },
-          {
-              name: "Flo",
+           {
+              name: 'Paul',
               score: 501,
               average: 0,
               points: 0,
-              round: 0,
+              round: 0
           },
       ],
     }
   },
+  computed: {
+      playerList() {
+          return this.$store.state.players;
+      }
+  },
   methods: {
     returnHome: function () {
+        this.$store.commit('clearList');
         this.$router.push('/');
+        // TODO: show MOdal
     },
     initializeGame: function () {
         this.currentPlayer = this.player[this.currentIndex].name;
@@ -311,6 +322,7 @@ export default {
     border-radius: 20px;
     margin: 5px 10px;
     box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
+    cursor: pointer;
 }
 .undo {
     grid-column-start: 3;

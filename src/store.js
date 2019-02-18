@@ -5,15 +5,11 @@ Vue.use(Vuex)
 
 export default new Vuex.Store({
   state: {
-    players: [
-      {
-        name: "Thanh",
-        score: 501,
-        average: 30.2,
-      }
+    players: [],
+    doubleOut: false,
+    gameState: [
+
     ],
-    score: 0,
-    singleOut: true,
   },
   mutations: {
     addPlayer (state, name, score) {
@@ -21,7 +17,15 @@ export default new Vuex.Store({
         name,
         score,
         average: 0,
+        points: 0,
+        round: 0,
       })
+    },
+    clearList (state) {
+      state.players = [];
+    },
+    setDoubleOut (state, value) {
+      state.doubleOut = value;
     }
 
   },

@@ -14,12 +14,16 @@
       <AddButton class="addButton" @press="addPlayer()" />
     </section>
   
-  
+    
     <section class="scoreButton button">
-      <ToggleButton @click.native="addScore()" :value="score" />
-      </section>
+      <!-- TODO: Mach das ganze DIV clickable, nicht nur den Text -->
+      <div  class="scoreButton" @click="addScore()"><p>{{score}}</p></div>
+      <!-- <ToggleButton @click.native="addScore()" :value="score" /> -->
+    </section>
     <section class="doubleButton button">
-      <ToggleButton @click.native="doubleOut = !doubleOut" :value="doubleOut ? 'Double Out' : 'Single Out'" />
+      <div @click="doubleOut = !doubleOut">
+        <p>{{doubleOut ? 'Double Out' : 'Single Out'}}</p>
+      </div>
     </section>
     
     <div @click="initializeGame()" class="start">START</div>
@@ -65,7 +69,14 @@ export default {
       }
     },
     initializeGame: function () {
+      this.$store.commit('setDoubleOut', this.doubleOut);
+      console.log('DoubleOut: ' + this.doubleOut);
+      this.player.forEach((child) => {
+        this.$store.commit('addPlayer', child.name, this.score);
+        console.log('Spieler: ' + child.name + '---- Score: ' + this.score);
+      })
       this.$router.push('/game');
+
     },
     removePlayer: function (index) {
       this.player.splice(index, 1);

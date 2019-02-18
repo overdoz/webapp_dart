@@ -16,7 +16,7 @@ export default {
     }
   },
   props: {
-      value: String,
+      value: String | Number,
   }
 }
 </script>
