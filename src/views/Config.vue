@@ -16,7 +16,7 @@
   
   
     <section class="scoreButton button">
-      <ToggleButton  value="501" />
+      <ToggleButton @click.native="addScore()" :value="score" />
       </section>
     <section class="doubleButton button">
       <ToggleButton @click.native="doubleOut = !doubleOut" :value="doubleOut ? 'Double Out' : 'Single Out'" />
@@ -42,7 +42,7 @@ export default {
   },
   data: function () {
     return {
-      score: 501,
+      score: 301,
       doubleOut: false,
       player: [
         {name: 'Thanh'},
@@ -51,6 +51,13 @@ export default {
     }
   },
   methods: {
+    addScore: function () {
+      if (this.score < 901) {
+        this.score += 100;
+      } else {
+        this.score = 301;
+      }
+    },
     addPlayer: function () {
       console.log('clicked');
       if (this.player.length < 4) {
