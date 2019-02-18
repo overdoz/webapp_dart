@@ -1,4 +1,5 @@
 <template>
+<transition name="fade">
   <div class="welcome">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
 		<div class="secondLayer"><h1>{{text}}</h1></div>
@@ -66,6 +67,7 @@
 
  
   </div>
+	</transition>
 </template>
 
 <script>
@@ -105,7 +107,7 @@ export default {
 @charset "utf8";
 @import url(https://fonts.googleapis.com/css?family=Amatic+SC|Space+Mono|VT323);
 h1 {
-  color: #02BEC4;
+  color: #02547D;
   letter-spacing: 10px;
   left: 5%;
   bottom: 3px;
@@ -379,6 +381,13 @@ div{display:block;position:absolute}
 	border-left:5px solid transparent;
 	border-right:5px solid transparent
 	}
+
+	.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
+}
 /*                                             ! Mandala Ended Here ...
 =======================================================================================================================*/
 

@@ -1,25 +1,30 @@
 <template>
+<transition name="fade">
   <div class="config">
     <section class="header">
       <h1>Dart Zähler</h1>
     </section>
 
     <section class="player">
-      <AddPlayer v-for="(value, key) in player" :key="key" v-model="value['name']" />
+      <AddPlayer 
+        v-for="(value, key) in player" 
+        :key="key" 
+        v-model="value['name']" 
+        @close="removePlayer(key)"/>
       <AddButton class="addButton" @press="addPlayer()" />
     </section>
-    <!-- 
-    <section class="player">
-      <AddPlayer v-for="(value, key) in player" :key="key" v-model="value['name']" />
-      <AddButton @press="addPlayer()" />
-    </section>
-    <section class="button-section">
-      <ToggleButton value="501" />
-      <ToggleButton value="Double Out" />
+  
+  
+    <section class="scoreButton button">
+      <ToggleButton  value="501" />
+      </section>
+    <section class="doubleButton button">
+      <ToggleButton @click.native="doubleOut = !doubleOut" :value="doubleOut ? 'Double Out' : 'Single Out'" />
     </section>
     
-    <router-link to="/game"><div class="start">Start</div></router-link> -->
+    <div @click="initializeGame()" class="start">START</div>
   </div>
+   </transition>
 </template>
 
 <script>
@@ -48,13 +53,17 @@ export default {
   methods: {
     addPlayer: function () {
       console.log('clicked');
-      if (this.player.length <= 4) {
-        this.player.push({name: 'Spieler'});
+      if (this.player.length < 4) {
+        this.player.push({name: ''});
       }
     },
     initializeGame: function () {
-
+      this.$router.push('/game');
+    },
+    removePlayer: function (index) {
+      this.player.splice(index, 1);
     }
+
   }
 }
 </script>
@@ -62,22 +71,44 @@ export default {
 <style scoped>
 h1 {
   margin: 0;
+  color: #02547D;
+  font-weight: 1000;
+  letter-spacing: 2px;
 }
 
 .addButton {
   margin-top: 30px;
 }
 
-.button-section {
-  position: absolute;
-  bottom: 10vh;
+.button {
+  font-size: 110%;
+  letter-spacing: 2px;
   display: flex;
-  justify-content: center;
-  align-items: center;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    margin: 20px;
+    cursor: pointer;
+    box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
 }
 
-section {
+/* section {
   width: 100vw;
+} */
+.scoreButton {
+    grid-column-start: 1;
+    grid-column-end: 2;
+    grid-row-start: 3;
+    grid-row-end: 4;
+    
+
+}
+.doubleButton {
+  grid-column-start: 2;
+    grid-column-end: 3;
+    grid-row-start: 3;
+    grid-row-end: 4;
+
 }
 
 .header {
@@ -98,24 +129,36 @@ section {
 }
 
 .config {
-  background-color: #BBB;
+  background-color: #E1F7E6;
   height: 100vh;
   display: grid;
   grid-template-rows: 10fr 40fr 10fr 7fr;
   grid-template-columns: 50% 50%;
+  color: #0285A8;
   
 }
 
 .start {
-  position: absolute;
+  grid-column-start: 1;
+    grid-column-end: 3;
+    grid-row-start: 4;
+    grid-row-end: 5;
   display: flex;
   align-items: center;
   justify-content: center;
-  bottom: 0;
-  width: 100%;
-  height: 10vh;
   background-color: green;
   color: white;
+  cursor: pointer;
+  font-weight: bold;
+  font-size: 130%;
+  letter-spacing: 5px;
+}
+
+.fade-enter-active, .fade-leave-active {
+  transition: opacity .5s;
+}
+.fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
+  opacity: 0;
 }
 
 </style>

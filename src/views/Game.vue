@@ -35,7 +35,7 @@
     <div class="button no20" @click="shoot(20)">20</div>
     <div class="button daneben" @click="shoot(0)">daneben</div>
     <div v-bind:class="{ disable: tripleHit }" class="button bull" @click="shoot(25)">bull</div>
-    <div class="beenden"><router-link to="/">beenden</router-link></div>
+    <div @click="returnHome()" class="beenden">beenden</div>
     <div class="undo">oops!</div>
   </div>
 </template>
@@ -94,6 +94,9 @@ export default {
     }
   },
   methods: {
+    returnHome: function () {
+        this.$router.push('/');
+    },
     initializeGame: function () {
         this.currentPlayer = this.player[this.currentIndex].name;
 
@@ -199,6 +202,9 @@ export default {
     grid-template-rows: 20fr 15fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr;
     grid-template-columns: 25% 25% 25% 25%;
     height: 100vh;
+    color: #0285A8;
+    font-weight: 700;
+    background-color: #E1F7E6;
 }
 
 .user {
@@ -210,7 +216,9 @@ export default {
 }
 
 .active {
-    background-color: rgb(173, 173, 173);
+    background-color: #A9E8DC;
+    border-radius: 20px;
+    margin: 5px 10px;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -218,8 +226,10 @@ export default {
 }
 
 .score {
-    font-weight: bold;
+    font-weight: 1000;
     font-size: 120;
+    letter-spacing: 3px;
+    color: #02547D;
 }
 
 .header {
@@ -227,11 +237,12 @@ export default {
     grid-column-end: 5;
     grid-row-start: 1;
     grid-row-end: 2;
-    background-color: #D6D6D6;
+    background-color: #E1F7E6;
     height: 100%;
     width: 100%;
     display: flex;
     justify-content: space-around;
+    
 }
 
 .currentPlayer {
@@ -245,10 +256,13 @@ export default {
      display: flex;
     justify-content: space-around;
     align-items: center;
+    color: #02547D;
+    box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
+    z-index: 2;
 }
 
 .button {
-    background-color: #D6D6D6;
+    background-color: #E1F7E6;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -260,12 +274,14 @@ export default {
     grid-column-end: 3;
     grid-row-start: 3;
     grid-row-end: 4;
+    color: #02547D;
 }
 .tripleButton {
     grid-column-start: 3;
     grid-column-end: 5;
     grid-row-start: 3;
     grid-row-end: 4;
+    color: #02547D;
 }
 
 .daneben {
@@ -273,12 +289,14 @@ export default {
     grid-column-end: 3;
     grid-row-start: 9;
     grid-row-end: 10;
+    color: #02547D;
 }
 .bull {
     grid-column-start: 3;
     grid-column-end: 5;
     grid-row-start: 9;
     grid-row-end: 10;
+    color: #02547D;
 }
 .beenden {
     grid-column-start: 1;
@@ -289,6 +307,10 @@ export default {
     justify-content: center;
     align-items: center;
     background-color: red;
+    color: white;
+    border-radius: 20px;
+    margin: 5px 10px;
+    box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
 }
 .undo {
     grid-column-start: 3;
@@ -298,7 +320,11 @@ export default {
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: #AAA;
+    background-color: white;
+    border-radius: 20px;
+    margin: 5px 20px;
+    color: #0285A8;
+    box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
 }
 </style>
 

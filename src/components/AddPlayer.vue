@@ -1,7 +1,14 @@
 <template>
   <div class="addPlayer">
-      <input v-if="edit" v-bind:value="value" v-on:input="$emit('input', $event.target.value)" type="text" placeholder="Name"/>
-      <span>&times;</span>
+      <input 
+        v-if="edit" 
+        v-bind:value="value" 
+        v-on:input="$emit('input', $event.target.value)" 
+        type="text" 
+        placeholder="Name"
+        maxlength="20"
+        />
+      <span @click="$emit('close')">&times;</span>
   </div>
 </template>
 
@@ -31,9 +38,13 @@ input {
     background-color: rgba(0,0,0,0);
     border: none;
     font-size: 20px;
+    color: #0285A8;
+    font-weight: 500;
 }
 span {
     font-size: 25px;
+    cursor: pointer;
+    font-weight: 700;
 }
 input:focus {
     background-color: rgba(0,0,0,0);;

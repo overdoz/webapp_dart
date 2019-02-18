@@ -23,8 +23,10 @@ export default {
 
 <style scoped>
 .toggleButton {
-  width: 40%;
-  background-color: white;
+  width: calc(100%-20px);
+  height: calc(100%-20px);
+  color: #0285A8;
   margin: 10px;
+  font-weight: 500;
 }
 </style>
