@@ -1,7 +1,7 @@
 <template>
   <div class="game">
     <div class="header">
-        <div class="user" v-for="(user, key) in player" :key="key">
+        <div class="user" v-for="(user, key) in playerList" :key="key">
             <p>{{user.name}}</p>
             <p class="score">{{user.score}}</p>
             <p>{{Math.round(user.average * 10) / 10}}</p>
@@ -34,7 +34,12 @@
     <div class="button no19" @click="shoot(19)">19</div>
     <div class="button no20" @click="shoot(20)">20</div>
     <div class="button daneben" @click="shoot(0)">daneben</div>
-    <div v-bind:class="{ disable: tripleHit }" class="button bull" @click="shoot(25)">bull</div>
+    <div 
+        v-bind:class="{ disable: tripleHit }" 
+        class="button bull" 
+        @click="shoot(25)">
+        {{doubleHit ? 'bullseye' : 'bull'}}
+    </div>
     <div @click="returnHome()" class="beenden">beenden</div>
     <div class="undo">oops!</div>
   </div>
@@ -47,7 +52,7 @@ export default {
     
   },
   beforeCreate() {
-      // this.player = this.$store.state.players;
+      this.player = this.$store.state.players;
       // TODO: Link player mit dem VUEX Store
   },
   created() {
@@ -99,6 +104,8 @@ export default {
   },
   computed: {
       playerList() {
+          console.log(this.$store.state.players);
+          console.log(this.$store.state.players[0]);
           return this.$store.state.players;
       }
   },
@@ -220,10 +227,12 @@ export default {
 
 .user {
     text-align: center;
+    width: 25vw;
 }
 
 .disable {
     display: none;
+    z-index: -6;
 }
 
 .active {

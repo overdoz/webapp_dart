@@ -12,13 +12,13 @@ export default new Vuex.Store({
     ],
   },
   mutations: {
-    addPlayer (state, name, score) {
+    addPlayer (state, infos) {
       state.players.push({
-        name,
-        score,
+        name: infos.name,
+        score: infos.score,
         average: 0,
-        points: 0,
         round: 0,
+        points: 0,
       })
     },
     clearList (state) {

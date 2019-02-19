@@ -2,7 +2,7 @@
 <transition name="fade">
   <div class="welcome">
     <!-- <img alt="Vue logo" src="../assets/logo.png"> -->
-		<div class="secondLayer"><h1>{{text}}</h1></div>
+		<div class="secondLayer"><h1>{{text + '_'}}</h1></div>
     <div class="spinner">
    <div class="container_1">
 	<div class="big-leaf_1"><div></div><div></div></div>
@@ -92,7 +92,7 @@ export default {
 			}
 		}, 700);
     setTimeout(() => {
-      	this.$router.push('/config');
+      this.$router.push('/config');
     }, 9000)
   },
   methods: {
@@ -130,6 +130,7 @@ h1 {
     -ms-animation-duration: 90000ms;
     -ms-animation-iteration-count: infinite;
     -ms-animation-timing-function: linear;
+		
 }
 
 .secondLayer {

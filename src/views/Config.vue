@@ -72,7 +72,8 @@ export default {
       this.$store.commit('setDoubleOut', this.doubleOut);
       console.log('DoubleOut: ' + this.doubleOut);
       this.player.forEach((child) => {
-        this.$store.commit('addPlayer', child.name, this.score);
+        this.$store.commit('addPlayer', {name: child.name, score: this.score});
+        console.log(this.$store.state.players);
         console.log('Spieler: ' + child.name + '---- Score: ' + this.score);
       })
       this.$router.push('/game');
