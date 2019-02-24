@@ -1,18 +1,27 @@
 <template>
   <div class="game">
     <div class="header">
-        <div class="user" v-for="(user, key) in playerList" :key="key">
-            <p>{{user.name}}</p>
-            <p class="score">{{user.score}}</p>
-            <p>{{Math.round(user.average * 10) / 10}}</p>
-        </div>
+      <div class="user" v-for="(user, key) in player" :key="key">
+        <p>{{user.name}}</p>
+        <p class="score">{{user.score}}</p>
+        <p>{{Math.round(user.average * 10) / 10}}</p>
+      </div>
     </div>
     <div class="currentPlayer">
-        <p>{{currentPlayer}}</p>
-        <div v-for="(shot, key) in shots" :key="key">{{shot}}</div>
+      <p>{{currentPlayer}}</p>
+
+      <div v-for="(shot, key) in shots" :key="key">{{shot}}</div>
     </div>
-    <div v-bind:class="{ active: doubleHit, button: !doubleHit }" class="doubleButton"  @click="doubleHit = !doubleHit; tripleHit = false">Double</div>
-    <div v-bind:class="{ active: tripleHit, button: !tripleHit }" class="tripleButton"  @click="tripleHit = !tripleHit; doubleHit = false">Triple</div>
+    <div
+      v-bind:class="{ active: doubleHit, button: !doubleHit }"
+      class="doubleButton"
+      @click="doubleHit = !doubleHit; tripleHit = false"
+    >Double</div>
+    <div
+      v-bind:class="{ active: tripleHit, button: !tripleHit }"
+      class="tripleButton"
+      @click="tripleHit = !tripleHit; doubleHit = false"
+    >Triple</div>
     <div class="button no1" @click="shoot(1)">1</div>
     <div class="button no2" @click="shoot(2)">2</div>
     <div class="button no3" @click="shoot(3)">3</div>
@@ -34,319 +43,347 @@
     <div class="button no19" @click="shoot(19)">19</div>
     <div class="button no20" @click="shoot(20)">20</div>
     <div class="button daneben" @click="shoot(0)">daneben</div>
-    <div 
-        v-bind:class="{ disable: tripleHit }" 
-        class="button bull" 
-        @click="shoot(25)">
-        {{doubleHit ? 'bullseye' : 'bull'}}
-    </div>
+    <div
+      v-bind:class="{ disable: tripleHit }"
+      class="button bull"
+      @click="shoot(25)"
+    >{{doubleHit ? 'bullseye' : 'bull'}}</div>
     <div @click="returnHome()" class="beenden">beenden</div>
-    <div class="undo">oops!</div>
+    <div @click="undo()" class="undo">oops!</div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'game',
-  components: {
-    
-  },
+  name: "game",
+  components: {},
   beforeCreate() {
-      this.player = this.$store.state.players;
-      // TODO: Link player mit dem VUEX Store
+    this.player = this.players;
+    // TODO: Link player mit dem VUEX Store
   },
   created() {
-      this.initializeGame();
+    this.player = this.playerList;
+    this.initializeGame();
   },
-  data: function () {
+  data: function() {
     return {
-      score: 501,
+      gameState: [],
+
       doubleHit: false,
       tripleHit: false,
 
       disableButtons: false,
 
       doubleOut: false,
-      currentPlayer: '',
+      currentPlayer: "",
       currentIndex: 0,
       shots: [],
-      player: [
-          {
-              name: 'Thanh',
-              score: 501,
-              average: 0,
-              points: 0,
-              round: 0
-          },
-           {
-              name: 'Flo',
-              score: 501,
-              average: 0,
-              points: 0,
-              round: 0
-          },
-           {
-              name: 'Sophie',
-              score: 501,
-              average: 0,
-              points: 0,
-              round: 0
-          },
-           {
-              name: 'Paul',
-              score: 501,
-              average: 0,
-              points: 0,
-              round: 0
-          },
-      ],
-    }
+      player: []
+    };
   },
   computed: {
-      playerList() {
-          console.log(this.$store.state.players);
-          console.log(this.$store.state.players[0]);
-          return this.$store.state.players;
-      }
+    playerList() {
+      return this.$store.state.players;
+    },
+    currentState() {
+      return {
+        doubleHit: this.doubleHit,
+        tripleHit: this.tripleHit,
+
+        disableButtons: this.disableButtons,
+
+        doubleOut: this.doubleOut,
+        currentPlayer: this.currentPlayer,
+        currentIndex: this.currentIndex,
+        shots: this.tempShots,
+        player: this.tempPlayer,
+      };
+    },
+    tempShots() {
+        return {
+            1: this.shots[0],
+            2: this.shots[1],
+            3: this.shots[2],
+        }
+    },
+    tempPlayer() {
+        return {
+            1: this.player[0],
+            2: this.player[1],
+            3: this.player[2],
+            4: this.player[3],
+        }
+    }
   },
   methods: {
-    returnHome: function () {
-        this.$store.commit('clearList');
-        this.$router.push('/');
-        // TODO: show MOdal
+    returnHome: function() {
+      this.$store.commit("clearList");
+      this.$router.push("/");
+      // TODO: show MOdal
     },
-    initializeGame: function () {
-        this.currentPlayer = this.player[this.currentIndex].name;
-
+    initializeGame: function() {
+      this.currentPlayer = this.player[this.currentIndex].name;
     },
-    addPlayer: function (name, score) {
+    addPlayer: function(name, score) {
       this.player.push({
         name,
         score,
         average: 0,
-        round: 0,
-      })
+        round: 0
+      });
     },
-    shoot: function (value) {
-        console.log(this.shots);
-        console.log(this.currentPlayer);
-        console.log(this.currentIndex);
-        if (this.disableButtons == true) {
-            return;
+    shoot: function(value) {
+    
+      if (this.disableButtons == true) {
+        return;
+      }
+      let tempValue = value;
+      let playerScore = this.player[this.currentIndex].score;
+      let tempScore = (playerScore -= this.shots.reduce(this.add, 0));
+ 
+      if (this.doubleHit == true) {
+        tempValue = value * 2;
+      } else if (this.tripleHit == true && tempValue != 25) {
+        tempValue = value * 3;
+      }
+      // Wenn der Wurf <,>,= der aktuellen Punktzahl (- bereits geworfener Würfe)
+      switch (true) {
+        case tempValue < tempScore:
+          // Zieh den Wurf vom Punktestand ab
+          this.player[this.currentIndex].score -= tempValue;
+          this.player[this.currentIndex].points += tempValue;
+          break;
+
+        case tempValue > tempScore:
+          // Wenn der Wurf höher als die Restpunktzahl ist, wechsle zum nächsten Spieler
+          this.shots = [];
+          this.nextPlayer();
+          break;
+
+        case tempValue == tempScore:
+        // TODO
+        // doubleHit muss true bleiben, um doubleOut zu ermöglichen
+      }
+
+      if (this.shots.length <= 3 && this.disableButtons == false) {
+        this.shots.push(tempValue);
+      }
+
+      if (this.shots.length == 3) {
+        // füge die Punkte zum Spieler hinzu, berechne den Durchschitt und leere wieder alles
+        this.disableButtons = true;
+        setTimeout(() => {
+          this.shots = [];
+          this.player[this.currentIndex].round++;
+          this.player[this.currentIndex].average =
+            this.player[this.currentIndex].points /
+            this.player[this.currentIndex].round;
+          this.nextPlayer();
+          this.disableButtons = false;
+        }, 2000);
+      }
+      this.doubleHit = false;
+      this.tripleHit = false;
+  
+      this.pushState();
+    },
+    nextPlayer: function() {
+      // wenn der letzte dran ist, index wieder auf 0 setzen
+      if (
+        this.currentIndex < this.player.length &&
+        this.currentIndex != this.player.length - 1
+      ) {
+        this.currentIndex++;
+        // der nächste Spieler ist dran
+        this.currentPlayer = this.player[this.currentIndex].name;
+      } else {
+        // Wenn der letzte dran ist, setzte den Index wieder auf 0
+        this.currentIndex = 0;
+        this.currentPlayer = this.player[0].name;
+      }
+    },
+    isGameOver: function() {
+      this.player.forEach(child => {
+        if (child.score == 0) {
+          console.log("Game Over");
         }
-        let tempValue = value;
-        let playerScore = this.player[this.currentIndex].score
-        let tempScore = playerScore -= this.shots.reduce(this.add,0);
-        console.log(tempScore);
-        if (this.doubleHit == true) {
-            tempValue = value * 2;
-        } else if (this.tripleHit == true && tempValue != 25) {
-            tempValue = value * 3;
+      });
+    },
+    add: function(a, b) {
+      return a + b;
+    },
+    pushState: function() {
+        this.gameState.push(this.currentState);
+        console.log(this.gameState);
+    },
+    undo: function() {
+        const latestState = this.gameState.pop();
+
+        this.doubleHit = latestState.doubleHit;
+        this.tripleHit = latestState.tripleHit;
+        this.disableButtons = latestState.disableButtons;
+        this.doubleOut = latestState.doubleOut;
+        this.currentPlayer = latestState.currentPlayer;
+        this.currentIndex = latestState.currentIndex;
+
+        const shotsArray = [];
+        for(var key in latestState.shots) {
+            if (latestState.shots[key] != undefined) {
+                shotsArray.push(latestState.shots[key])
+            }
         }
-        // Wenn der Wurf <,>,= der aktuellen Punktzahl (- bereits geworfener Würfe)
-        switch (true) {
-            case tempValue < tempScore:
-                // Zieh den Wurf vom Punktestand ab
-                console.log('Shot value: ' + tempValue);
-                this.player[this.currentIndex].score -= tempValue;
-                console.log('Player score: ' + this.player[this.currentIndex].score);
-                this.player[this.currentIndex].points += tempValue;
-                break;
+        this.shots = shotsArray;
 
-            case tempValue > tempScore:
-                // Wenn der Wurf höher als die Restpunktzahl ist, wechsle zum nächsten Spieler
-                this.shots = [];
-                this.nextPlayer();
-                break;
-
-            case tempValue == tempScore:
-                // TODO
-                // doubleHit muss true bleiben, um doubleOut zu ermöglichen
-
+        this.player = [];
+        
+        for(var key in latestState.player) {
+            if (latestState.player[key] != undefined) {
+                console.log(latestState.player[key])
+                this.player.push(latestState.player[key])
+            }
         }
         
-        if (this.shots.length <= 3 && this.disableButtons == false) {
-            this.shots.push(tempValue);
-            console.log('Shots Length: ' + this.shots.length);
-        }
+        
 
-        if (this.shots.length == 3) {
-            // füge die Punkte zum Spieler hinzu, berechne den Durchschitt und leere wieder alles  
-            this.disableButtons = true;
-            setTimeout(() => {
-                this.shots = [];
-                this.player[this.currentIndex].round++;
-                this.player[this.currentIndex].average = this.player[this.currentIndex].points / this.player[this.currentIndex].round
-                this.nextPlayer();
-                this.disableButtons = false;
-            }, 2000);
-            
-        }
-        this.doubleHit = false;
-        this.tripleHit = false;
-        console.log(this.shots);
-        console.log('current Player: ' + this.currentPlayer);
-        console.log('current Index: ' + this.currentIndex);
-    },
-    nextPlayer: function () {
-        // wenn der letzte dran ist, index wieder auf 0 setzen
-        if (this.currentIndex < this.player.length && this.currentIndex != this.player.length - 1) {
-            this.currentIndex++;
-            // der nächste Spieler ist dran
-            this.currentPlayer = this.player[this.currentIndex].name;
-        } else {
-            // Wenn der letzte dran ist, setzte den Index wieder auf 0
-            this.currentIndex = 0;
-            this.currentPlayer = this.player[0].name;
-        }
-    },
-    isGameOver: function () {
-        this.player.forEach((child) => {
-            if (child.score == 0) {
-                console.log("Game Over");
-            }
-        })
-    },
-    add: function (a, b) {
-        return a + b;
-    },
+    }
   }
-}
+};
 </script>
 
 <style scoped>
 .game {
-    display: grid;
-    grid-template-rows: 20fr 15fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr;
-    grid-template-columns: 25% 25% 25% 25%;
-    height: 100vh;
-    color: #0285A8;
-    font-weight: 700;
-    background-color: #E1F7E6;
+  display: grid;
+  grid-template-rows: 20fr 15fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr 10fr;
+  grid-template-columns: 25% 25% 25% 25%;
+  height: 100vh;
+  color: #0285a8;
+  font-weight: 700;
+  background-color: #e1f7e6;
 }
 
 .user {
-    text-align: center;
-    width: 25vw;
+  text-align: center;
+  width: 25vw;
 }
 
 .disable {
-    display: none;
-    z-index: -6;
+  display: none;
+  z-index: -6;
 }
 
 .active {
-    background-color: #A9E8DC;
-    border-radius: 20px;
-    margin: 5px 10px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  background-color: #a9e8dc;
+  border-radius: 20px;
+  margin: 5px 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .score {
-    font-weight: 1000;
-    font-size: 120;
-    letter-spacing: 3px;
-    color: #02547D;
+  font-weight: 1000;
+  font-size: 120;
+  letter-spacing: 3px;
+  color: #02547d;
 }
 
 .header {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 1;
-    grid-row-end: 2;
-    background-color: #E1F7E6;
-    height: 100%;
-    width: 100%;
-    display: flex;
-    justify-content: space-around;
-    
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 1;
+  grid-row-end: 2;
+  background-color: #e1f7e6;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
 }
 
 .currentPlayer {
-    grid-column-start: 1;
-    grid-column-end: 5;
-    grid-row-start: 2;
-    grid-row-end: 3;
-    background-color: white;
-    height: 100%;
-    width: 100%;
-     display: flex;
-    justify-content: space-around;
-    align-items: center;
-    color: #02547D;
-    box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
-    z-index: 2;
+  grid-column-start: 1;
+  grid-column-end: 5;
+  grid-row-start: 2;
+  grid-row-end: 3;
+  background-color: white;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  color: #02547d;
+  box-shadow: 7px 7px 13px rgba(0, 0, 0, 0.1);
+  z-index: 2;
 }
 
 .button {
-    background-color: #E1F7E6;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    cursor: pointer;
+  background-color: #e1f7e6;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
 }
 
 .doubleButton {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    color: #02547D;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  color: #02547d;
 }
 .tripleButton {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row-start: 3;
-    grid-row-end: 4;
-    color: #02547D;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 3;
+  grid-row-end: 4;
+  color: #02547d;
 }
 
 .daneben {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 9;
-    grid-row-end: 10;
-    color: #02547D;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 9;
+  grid-row-end: 10;
+  color: #02547d;
 }
 .bull {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row-start: 9;
-    grid-row-end: 10;
-    color: #02547D;
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 9;
+  grid-row-end: 10;
+  color: #02547d;
 }
 .beenden {
-    grid-column-start: 1;
-    grid-column-end: 3;
-    grid-row-start: 10;
-    grid-row-end: 11;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: red;
-    color: white;
-    border-radius: 20px;
-    margin: 5px 10px;
-    box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
-    cursor: pointer;
+  grid-column-start: 1;
+  grid-column-end: 3;
+  grid-row-start: 10;
+  grid-row-end: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: red;
+  color: white;
+  border-radius: 20px;
+  margin: 5px 10px;
+  box-shadow: 7px 7px 13px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
 }
 .undo {
-    grid-column-start: 3;
-    grid-column-end: 5;
-    grid-row-start: 10;
-    grid-row-end: 11;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background-color: white;
-    border-radius: 20px;
-    margin: 5px 20px;
-    color: #0285A8;
-    box-shadow: 7px 7px 13px rgba(0,0,0,0.1);
+  grid-column-start: 3;
+  grid-column-end: 5;
+  grid-row-start: 10;
+  grid-row-end: 11;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+  border-radius: 20px;
+  margin: 5px 20px;
+  color: #0285a8;
+  box-shadow: 7px 7px 13px rgba(0, 0, 0, 0.1);
 }
+
+
 </style>
 
 
