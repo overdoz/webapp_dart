@@ -9,10 +9,6 @@
     </div>
     <div class="currentPlayer">
       <p>{{currentPlayer}}</p>
-<<<<<<< HEAD
-=======
-
->>>>>>> 60f735c946fa180198ef87e27922c7a1111b29ab
       <div v-for="(shot, key) in shots" :key="key">{{shot}}</div>
     </div>
     <div
@@ -52,11 +48,7 @@
       @click="shoot(25)"
     >{{doubleHit ? 'bullseye' : 'bull'}}</div>
     <div @click="returnHome()" class="beenden">beenden</div>
-<<<<<<< HEAD
     <div class="undo" @click="undo">oops!</div>
-=======
-    <div @click="undo()" class="undo">oops!</div>
->>>>>>> 60f735c946fa180198ef87e27922c7a1111b29ab
   </div>
 </template>
 
@@ -64,7 +56,6 @@
 export default {
   name: "game",
   components: {},
-<<<<<<< HEAD
   beforeMount() {
       this.player = this.playerList;
         this.initializeGame();
@@ -79,27 +70,21 @@ export default {
   data: function() {
     return {
         // stateobjekt erstellen und alles mit gettern connecten
-      gamestate: [
-  
-      ],
-      shotsState: [
+      state: {
+          doubleHit: false,
+          triplehit: false,
+          disableButtons: false,
+          doubleOut: false,
+          currentIndex: 0,
+          player: {
+              
+          }
 
-      ],
-      score: 501,
-=======
-  beforeCreate() {
-    this.player = this.players;
-    // TODO: Link player mit dem VUEX Store
-  },
-  created() {
-    this.player = this.playerList;
-    this.initializeGame();
-  },
-  data: function() {
-    return {
-      gameState: [],
+      },
+      shotsState: {
 
->>>>>>> 60f735c946fa180198ef87e27922c7a1111b29ab
+      },
+
       doubleHit: false,
       tripleHit: false,
 
@@ -109,7 +94,6 @@ export default {
       currentPlayer: "",
       currentIndex: 0,
       shots: [],
-<<<<<<< HEAD
       player: [
         // {
         //   name: "Thanh",
@@ -230,99 +214,6 @@ export default {
         console.log(this.shots);
       }
 
-=======
-      player: []
-    };
-  },
-  computed: {
-    playerList() {
-      return this.$store.state.players;
-    },
-    currentState() {
-      return {
-        doubleHit: this.doubleHit,
-        tripleHit: this.tripleHit,
-
-        disableButtons: this.disableButtons,
-
-        doubleOut: this.doubleOut,
-        currentPlayer: this.currentPlayer,
-        currentIndex: this.currentIndex,
-        shots: this.tempShots,
-        player: this.tempPlayer,
-      };
-    },
-    tempShots() {
-        return {
-            1: this.shots[0],
-            2: this.shots[1],
-            3: this.shots[2],
-        }
-    },
-    tempPlayer() {
-        return {
-            1: this.player[0],
-            2: this.player[1],
-            3: this.player[2],
-            4: this.player[3],
-        }
-    }
-  },
-  methods: {
-    returnHome: function() {
-      this.$store.commit("clearList");
-      this.$router.push("/");
-      // TODO: show MOdal
-    },
-    initializeGame: function() {
-      this.currentPlayer = this.player[this.currentIndex].name;
-    },
-    addPlayer: function(name, score) {
-      this.player.push({
-        name,
-        score,
-        average: 0,
-        round: 0
-      });
-    },
-    shoot: function(value) {
-    
-      if (this.disableButtons == true) {
-        return;
-      }
-      let tempValue = value;
-      let playerScore = this.player[this.currentIndex].score;
-      let tempScore = (playerScore -= this.shots.reduce(this.add, 0));
- 
-      if (this.doubleHit == true) {
-        tempValue = value * 2;
-      } else if (this.tripleHit == true && tempValue != 25) {
-        tempValue = value * 3;
-      }
-      // Wenn der Wurf <,>,= der aktuellen Punktzahl (- bereits geworfener Würfe)
-      switch (true) {
-        case tempValue < tempScore:
-          // Zieh den Wurf vom Punktestand ab
-          this.player[this.currentIndex].score -= tempValue;
-          this.player[this.currentIndex].points += tempValue;
-          break;
-
-        case tempValue > tempScore:
-          // Wenn der Wurf höher als die Restpunktzahl ist, wechsle zum nächsten Spieler
-          this.shots = [];
-          this.nextPlayer();
-          break;
-
-        case tempValue == tempScore:
-        // TODO
-        // doubleHit muss true bleiben, um doubleOut zu ermöglichen
-      }
-
-      if (this.shots.length <= 3 && this.disableButtons == false) {
-        this.shots.push(tempValue);
-      }
-
->>>>>>> 60f735c946fa180198ef87e27922c7a1111b29ab
       if (this.shots.length == 3) {
         // füge die Punkte zum Spieler hinzu, berechne den Durchschitt und leere wieder alles
         this.disableButtons = true;
@@ -338,7 +229,6 @@ export default {
       }
       this.doubleHit = false;
       this.tripleHit = false;
-<<<<<<< HEAD
 
       this.safeState();
     },
@@ -366,69 +256,6 @@ export default {
     },
     add: function(a, b) {
       return a + b;
-=======
-  
-      this.pushState();
-    },
-    nextPlayer: function() {
-      // wenn der letzte dran ist, index wieder auf 0 setzen
-      if (
-        this.currentIndex < this.player.length &&
-        this.currentIndex != this.player.length - 1
-      ) {
-        this.currentIndex++;
-        // der nächste Spieler ist dran
-        this.currentPlayer = this.player[this.currentIndex].name;
-      } else {
-        // Wenn der letzte dran ist, setzte den Index wieder auf 0
-        this.currentIndex = 0;
-        this.currentPlayer = this.player[0].name;
-      }
-    },
-    isGameOver: function() {
-      this.player.forEach(child => {
-        if (child.score == 0) {
-          console.log("Game Over");
-        }
-      });
-    },
-    add: function(a, b) {
-      return a + b;
-    },
-    pushState: function() {
-        this.gameState.push(this.currentState);
-        console.log(this.gameState);
-    },
-    undo: function() {
-        const latestState = this.gameState.pop();
-
-        this.doubleHit = latestState.doubleHit;
-        this.tripleHit = latestState.tripleHit;
-        this.disableButtons = latestState.disableButtons;
-        this.doubleOut = latestState.doubleOut;
-        this.currentPlayer = latestState.currentPlayer;
-        this.currentIndex = latestState.currentIndex;
-
-        const shotsArray = [];
-        for(var key in latestState.shots) {
-            if (latestState.shots[key] != undefined) {
-                shotsArray.push(latestState.shots[key])
-            }
-        }
-        this.shots = shotsArray;
-
-        this.player = [];
-        
-        for(var key in latestState.player) {
-            if (latestState.player[key] != undefined) {
-                console.log(latestState.player[key])
-                this.player.push(latestState.player[key])
-            }
-        }
-        
-        
-
->>>>>>> 60f735c946fa180198ef87e27922c7a1111b29ab
     }
   }
 };
@@ -566,8 +393,6 @@ export default {
   color: #0285a8;
   box-shadow: 7px 7px 13px rgba(0, 0, 0, 0.1);
 }
-
-
 </style>
 
 
