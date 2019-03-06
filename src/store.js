@@ -7,6 +7,7 @@ export default new Vuex.Store({
   state: {
     players: [],
     doubleOut: false,
+    score: 301,
     gameState: [
 
     ],
@@ -26,10 +27,16 @@ export default new Vuex.Store({
     },
     setDoubleOut (state, value) {
       state.doubleOut = value;
-    }
+    },
+    initialize (state, configs) {
+      state.doubleOut = configs.doubleOut;
+      state.score = configs.score;
+    },
 
   },
-  actions: {
-
+  getters: {
+    getPlayers: state => {
+      return state.players;
+    }
   }
 })

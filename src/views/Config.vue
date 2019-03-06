@@ -71,6 +71,7 @@ export default {
     initializeGame: function () {
       this.$store.commit('setDoubleOut', this.doubleOut);
       console.log('DoubleOut: ' + this.doubleOut);
+      this.$store.commit('initialize', {doubleOut: this.doubleOut, score: this.score});
       this.player.forEach((child) => {
         this.$store.commit('addPlayer', {name: child.name, score: this.score});
         console.log(this.$store.state.players);
